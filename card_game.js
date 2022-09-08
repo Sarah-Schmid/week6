@@ -30,7 +30,7 @@ console.log("Random Card: ", freshDeck[random]);
 //src: https://stackfame.com/5-ways-to-shuffle-an-array-using-moder-javascript-es6
 
 function shuffle(array) {
-  var currentIndex = array.length,
+  let currentIndex = array.length,
     temporaryValue,
     randomIndex;
   // While there remain elements to shuffle...
@@ -46,9 +46,9 @@ function shuffle(array) {
   return array;
 }
 
-function GetCardValue(strCard) {
-  var strName = strCard.substring(0, strCard.indexOf(" "));
-  var cardvalue;
+function getCardValue(strCard) {
+  let strName = strCard.substring(0, strCard.indexOf(" "));
+  let cardvalue;
 
   switch (strName) {
     case "Ace":
@@ -70,7 +70,7 @@ function GetCardValue(strCard) {
   return cardValue;
 }
 const shuffledDeck = shuffle(freshDeck);
-var player1Value, player2Value;
+let player1Value, player2Value;
 
 console.log("Shuffled Deck: ", shuffledDeck);
 
