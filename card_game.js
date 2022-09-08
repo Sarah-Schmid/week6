@@ -22,9 +22,13 @@ const deck1 = new Deck();
 let freshDeck = deck1.deck;
 console.log("Fresh Deck: ", freshDeck);
 
-// example of one would choose a random card from the deck and logging it in plain english
+/*
+
+// example of choosing a random card from the deck and logging it in plain english
 const random = Math.floor(Math.random() * freshDeck.length);
 console.log("Random Card: ", freshDeck[random]);
+
+*/
 
 //Shuffling the deck using the Fisher-Yates shuffle algorithm
 //src: https://stackfame.com/5-ways-to-shuffle-an-array-using-moder-javascript-es6
@@ -82,8 +86,8 @@ const half = Math.ceil(shuffledDeck.length / 2);
 const playerOneHand = shuffledDeck.slice(0, half);
 const playerTwoHand = shuffledDeck.slice(half);
 
-console.log("Player one's hand is: ", playerOneHand);
-console.log("Player twos's hand is: ", playerTwoHand);
+console.log("Player 1's hand is: ", playerOneHand);
+console.log("Player 2's hand is: ", playerTwoHand);
 
 //creating an array for each player's points
 let playerOneScore = [];
@@ -110,11 +114,6 @@ for (let i = 0; i < playerOneHand.length; i++) {
     );
   }
 }
-
-/*
-console.log(playerOneScore);
-console.log(playerTwoScore);
-*/
 
 //finding Player One's Total Score by adding all the numbers in the array
 
