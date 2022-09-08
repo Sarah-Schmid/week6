@@ -69,18 +69,28 @@ let playerTwoScore = [];
 for (let i = 0; i < playerOneHand.length; i++) {
   if (playerOneHand[i] > playerTwoHand[i]) {
     //if player one's card is higher than player two, then player one gets one point and it is added to their score array
-    console.log("player One has won 1 point"), playerOneScore.push(1);
+    console.log(
+      `Round ${i}) Player 1: ${playerOneHand[i]} vs Player 2: ${playerTwoHand[i]}. Player 1 won one point.`
+    ),
+      playerOneScore.push(1);
   }
   if (playerOneHand[i] < playerTwoHand[i]) {
     //if player two's card is higher than player one, then player two gets one point and it is added to their score array
-    console.log("player Two has won 1 point"), playerTwoScore.push(1);
+    console.log(
+      `Round ${i}) Player 1: ${playerOneHand[i]} vs Player 2: ${playerTwoHand[i]}. Player 2 won one point.`
+    ),
+      playerTwoScore.push(1);
   } else {
-    console.log("Tied");
+    console.log(
+      `Round ${i}) Player 1: ${playerOneHand[i]} vs Player 2: ${playerTwoHand[i]}. Tied, no points added.`
+    );
   }
 }
 
+/*
 console.log(playerOneScore);
 console.log(playerTwoScore);
+*/
 
 //finding Player One's Total Score by adding all the numbers in the array
 
@@ -89,7 +99,7 @@ let playerOneTotalScore = 0;
 for (let i = 0; i < playerOneScore.length; i++) {
   playerOneTotalScore += playerOneScore[i];
 }
-console.log(playerOneTotalScore);
+console.log("Player 1's Final Score: ", playerOneTotalScore);
 
 //finding Player Two's Total Score by adding all the numbers in the array
 
@@ -98,12 +108,12 @@ let playerTwoTotalScore = 0;
 for (let i = 0; i < playerTwoScore.length; i++) {
   playerTwoTotalScore += playerTwoScore[i];
 }
-console.log(playerTwoTotalScore);
+console.log("Player 2's Final Score: ", playerTwoTotalScore);
 
 if (playerOneTotalScore > playerTwoTotalScore) {
-  console.log("Player One Won!");
+  console.log("Player 1 Won!");
 } else if (playerOneTotalScore < playerTwoTotalScore) {
-  console.log("Player Two Won!");
+  console.log("Player 2 Won!");
 } else {
   console.log("Tied!");
 }
