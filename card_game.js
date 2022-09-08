@@ -45,7 +45,32 @@ function shuffle(array) {
   }
   return array;
 }
+
+function GetCardValue(strCard) {
+  var strName = strCard.substring(0, strCard.indexOf(" "));
+  var cardvalue;
+
+  switch (strName) {
+    case "Ace":
+      cardValue = 1;
+      break;
+    case "Jack":
+      cardValue = 11;
+      break;
+    case "Queen":
+      cardValue = 12;
+    case "King":
+      cardValue = 13;
+      break;
+    default:
+      cardValue = Number(strName);
+      break;
+  }
+
+  return cardValue;
+}
 const shuffledDeck = shuffle(freshDeck);
+var player1Value, player2Value;
 
 console.log("Shuffled Deck: ", shuffledDeck);
 
@@ -73,8 +98,7 @@ for (let i = 0; i < playerOneHand.length; i++) {
       `Round ${i}) Player 1: ${playerOneHand[i]} vs Player 2: ${playerTwoHand[i]}. Player 1 won one point.`
     ),
       playerOneScore.push(1);
-  }
-  if (playerOneHand[i] < playerTwoHand[i]) {
+  } else if (playerOneHand[i] < playerTwoHand[i]) {
     //if player two's card is higher than player one, then player two gets one point and it is added to their score array
     console.log(
       `Round ${i}) Player 1: ${playerOneHand[i]} vs Player 2: ${playerTwoHand[i]}. Player 2 won one point.`
