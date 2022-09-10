@@ -1,17 +1,28 @@
+console.log("Let's play War!");
+
 //creating a class for the Deck of cards
+class Card {
+  constructor(value, suit, rank) {
+    this.value = value;
+    this.suit = suit;
+    this.rank = rank;
+  }
+}
+
 class Deck {
   constructor() {
     this.deck = [];
 
     //creating two arrays, one for the suits and one for the values of the Deck of cards
-    const suits = ["Hearts", "Spades", "Clubs", "Diamonds"];
-    const values = ["Ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "Jack", "Queen", "King"];
+    const suits = ["Spades", "Hearts", "Clubs", "Diamonds"];
+    const values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+    const ranks = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"];
 
     //looping through the suits and values array in order to create a new array with all the cars
-    for (let suit in suits) {
-      for (let value in values) {
-        //creating a string to list the card values in plain english
-        this.deck.push(`${values[value]} of ${suits[suit]}`);
+    //for of
+    for (let i = 0; i < suits.length; i++) {
+      for (let j = 0; j < values.length; j++) {
+        this.deck.push(new Card(values[j], suits[i], ranks[j]));
       }
     }
   }
@@ -20,15 +31,7 @@ class Deck {
 //logging all of the card values
 const deck1 = new Deck();
 let freshDeck = deck1.deck;
-console.log("Fresh Deck: ", freshDeck);
-
-/*
-
-// example of choosing a random card from the deck and logging it in plain english
-const random = Math.floor(Math.random() * freshDeck.length);
-console.log("Random Card: ", freshDeck[random]);
-
-*/
+console.log("Generating a fresh deck of 52 cards...");
 
 //Shuffling the deck using the Fisher-Yates shuffle algorithm
 //src: https://stackfame.com/5-ways-to-shuffle-an-array-using-moder-javascript-es6
@@ -50,33 +53,10 @@ function shuffle(array) {
   return array;
 }
 
-function getCardValue(strCard) {
-  let strName = strCard.substring(0, strCard.indexOf(" "));
-  let cardvalue;
-
-  switch (strName) {
-    case "Ace":
-      cardValue = 1;
-      break;
-    case "Jack":
-      cardValue = 11;
-      break;
-    case "Queen":
-      cardValue = 12;
-    case "King":
-      cardValue = 13;
-      break;
-    default:
-      cardValue = Number(strName);
-      break;
-  }
-
-  return cardValue;
-}
 const shuffledDeck = shuffle(freshDeck);
 let player1Value, player2Value;
 
-console.log("Shuffled Deck: ", shuffledDeck);
+console.log("Shuffling the deck...");
 
 //Dynamicly finding where to cut the deck in half
 //src: https://flaviocopes.com/how-to-cut-array-half-javascript/
@@ -92,8 +72,16 @@ function firstHalfOfArray(x) {
 const playerOneHand = firstHalfOfArray(shuffledDeck);
 const playerTwoHand = shuffledDeck.slice(half);
 
-console.log("Player 1's hand is: ", playerOneHand);
-console.log("Player 2's hand is: ", playerTwoHand);
+console.log(
+  `Splitting the deck in half...
+  Player 1 gets the top half player 2 gets the bottom half.`
+);
+
+console.log(
+  `Now let's play!
+  Each player deals the top card of their hand and the card with the highest value earns them one point.
+  Whoever has the most points when each player's hand runs out wins.`
+);
 
 //creating an array for each player's points
 let playerOneScore = [];
@@ -101,22 +89,33 @@ let playerTwoScore = [];
 
 //playing the game by looping the cards
 
-for (let i = 0; i < playerOneHand.length; i++) {
-  if (playerOneHand[i] > playerTwoHand[i]) {
+for (let i = 0; i < 26; i++) {
+  if (playerOneHand[i].value > playerTwoHand[i].value) {
     //if player one's card is higher than player two, then player one gets one point and it is added to their score array
     console.log(
-      `Round ${i}) Player 1: ${playerOneHand[i]} vs Player 2: ${playerTwoHand[i]}. Player 1 won 1 point.`
+      `Round ${i}) 
+      Player 1: ${playerOneHand[i].rank} of ${playerOneHand[i].suit}
+      Player 2: ${playerTwoHand[i].rank} of ${playerTwoHand[i].suit}
+      
+      Player 1 won 1 point.`
     ),
       playerOneScore.push(1);
-  } else if (playerOneHand[i] < playerTwoHand[i]) {
+  } else if (playerOneHand[i].value < playerTwoHand[i].value) {
     //if player two's card is higher than player one, then player two gets one point and it is added to their score array
     console.log(
-      `Round ${i}) Player 1: ${playerOneHand[i]} vs Player 2: ${playerTwoHand[i]}. Player 2 won 1 point.`
+      `Round ${i}) 
+      Player 1: ${playerOneHand[i].rank} of ${playerOneHand[i].suit}
+      Player 2: ${playerTwoHand[i].rank} of ${playerTwoHand[i].suit}
+
+      Player 2 won 1 point.`
     ),
       playerTwoScore.push(1);
   } else {
     console.log(
-      `Round ${i}) Player 1: ${playerOneHand[i]} vs Player 2: ${playerTwoHand[i]}. Tied, no points added.`
+      `Round ${i}) 
+      Player 1: ${playerOneHand[i].rank} of ${playerOneHand[i].suit}
+      Player 2: ${playerTwoHand[i].rank} of ${playerTwoHand[i].suit}
+      Tied, no points added.`
     );
   }
 }
