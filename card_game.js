@@ -82,8 +82,14 @@ console.log("Shuffled Deck: ", shuffledDeck);
 //src: https://flaviocopes.com/how-to-cut-array-half-javascript/
 const half = Math.ceil(shuffledDeck.length / 2);
 
+//-------------------------------------used for unit testing--------------------------------
+//function to find the top half of the array
+function firstHalfOfArray(x) {
+  return x.slice(0, Math.ceil(x.length / 2));
+}
+
 //Using the slice method to assign the halfs to each player
-const playerOneHand = shuffledDeck.slice(0, half);
+const playerOneHand = firstHalfOfArray(shuffledDeck);
 const playerTwoHand = shuffledDeck.slice(half);
 
 console.log("Player 1's hand is: ", playerOneHand);
@@ -99,13 +105,13 @@ for (let i = 0; i < playerOneHand.length; i++) {
   if (playerOneHand[i] > playerTwoHand[i]) {
     //if player one's card is higher than player two, then player one gets one point and it is added to their score array
     console.log(
-      `Round ${i}) Player 1: ${playerOneHand[i]} vs Player 2: ${playerTwoHand[i]}. Player 1 won one point.`
+      `Round ${i}) Player 1: ${playerOneHand[i]} vs Player 2: ${playerTwoHand[i]}. Player 1 won 1 point.`
     ),
       playerOneScore.push(1);
   } else if (playerOneHand[i] < playerTwoHand[i]) {
     //if player two's card is higher than player one, then player two gets one point and it is added to their score array
     console.log(
-      `Round ${i}) Player 1: ${playerOneHand[i]} vs Player 2: ${playerTwoHand[i]}. Player 2 won one point.`
+      `Round ${i}) Player 1: ${playerOneHand[i]} vs Player 2: ${playerTwoHand[i]}. Player 2 won 1 point.`
     ),
       playerTwoScore.push(1);
   } else {
